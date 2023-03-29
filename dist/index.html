@@ -1,1 +1,31 @@
-<!doctype html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Wbpack Exercise</title><script defer="defer" src="/main.bundle.js"></script></head><body></body></html>
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="To Do List using ES6, webpack and modules">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@100;400&display=swap" rel="stylesheet">
+    <script src="https://kit.fontawesome.com/6e8f4ae605.js" crossorigin="anonymous"></script>
+    <title>Velzck's To Do List</title>
+<script defer src="/main.bundle.js"></script></head>
+
+<body>
+    <h1>Velzck's to do list</h1>
+
+    <section class="listCont">
+        <form id="addToList">
+            <p id="listTitle" class="listElement">Today's To Do</p>
+            <div class="listElement addCont">
+                <input class="addToInput" type="text" id="toDo" placeholder="Add to your list..." required /> </input>
+                <i id="addIcon" class="fa-solid fa-plus"></i>    
+            </div>
+        </form>
+        <ul class="toDoList"></ul>
+        <button type="button" class="clear"><span>Clear all completed</span></button>
+    </section>
+</body>
+
+</html>

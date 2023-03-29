@@ -1,3 +1,110 @@
+* {
+  font-family: 'Montserrat', sans-serif;
+  box-sizing: border-box;
+}
+
 body {
-    background-color: bisque;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.listCont {
+  background-color: white;
+  width: 50%;
+  box-shadow: -8px 10px 26px -8px rgba(0, 0, 0, 0.75);
+}
+
+#listTitle {
+  padding: 0 1rem;
+  margin: 0;
+  display: flex;
+  align-items: center;
+  -webkit-text-stroke: 0.3px;
+  color: rgba(0, 0, 0, 0.75);
+}
+
+.addCont {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding-right: 0.8rem;
+}
+
+#addIcon {
+  color: rgba(0, 0, 0, 0.3);
+}
+
+.addToInput {
+  width: 100%;
+  outline: none;
+  border: none;
+  padding: 0 1rem;
+  font-style: italic;
+  display: flex;
+}
+
+.addToInput:active,
+.addToInput:focus-visible {
+  outline: none;
+}
+
+.toDoList {
+  list-style: none;
+  width: 100%;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.listItem {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0 1rem;
+}
+
+.toDoTask {
+  width: 100%;
+  outline: none;
+  border: none;
+  font-size: 1rem;
+  background-color: transparent;
+}
+
+.checked {
+  background-color: rgba(0, 0, 0, 0.05);
+}
+
+.taskChecked {
+  color: rgba(0, 0, 0, 0.5);
+  text-decoration: line-through;
+}
+
+.clear {
+  height: 3rem;
+  width: 100%;
+  border: none;
+  cursor: pointer;
+  transition: 200ms all ease-in-out;
+  font-size: 1rem;
+  -webkit-text-stroke: 0.3px;
+}
+
+.clear:active {
+  background-color: rgba(0, 0, 0, 0.185);
+  transition: 30ms all ease-in-out;
+}
+
+.listElement {
+  height: 3rem;
+  border-bottom: 2px solid rgba(0, 0, 0, 0.2);
+  border-radius: 0 0 10% 10%;
+  transition: 300ms all ease-in-out;
 }
