@@ -17,7 +17,7 @@
   - [Run tests](#run-tests)
   - [Deployment](#deployment)
 - [👥 Author](#author)
-- [🔭 Future Features](#future-features)
+- [🔭 Features](#future-features)
 - [🤝 Contributing](#contributing)
 - [⭐️ Show your support](#support)
 - [🙏 Acknowledgements](#acknowledgements)
@@ -160,7 +160,7 @@ The website will be deployed
 
 <!-- FUTURE FEATURES -->
 
-## 🔭 Future Features <a name="future-features"></a>
+## 🔭 Features <a name="future-features"></a>
 
 - [ ] **[Shows correct functionality]**
 - [ ] **[WebPack Correctly Used]**
