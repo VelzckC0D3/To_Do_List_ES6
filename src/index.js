@@ -32,7 +32,7 @@ const getMyList = () => {
     listTask.innerHTML = `
       <input type="checkbox" class="checkBox">
       <input type="text" class="toDoTask" value="${item.description}">
-      <i id="move" class="fa-solid fa-ellipsis-vertical" style="color: rgba(0, 0, 0, 0.3);"></i>
+      <i id="move" class="fa-solid fa-ellipsis-vertical moveIcon" style="color: rgba(0, 0, 0, 0.3);"></i>
     `;
     const checkbox = listTask.querySelector('.checkBox');
     const task = listTask.querySelector('.toDoTask');

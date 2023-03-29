@@ -78,6 +78,10 @@ body {
   background-color: transparent;
 }
 
+.checkBox {
+    cursor: pointer;
+}
+
 .checked {
   background-color: rgba(0, 0, 0, 0.05);
 }
@@ -100,6 +104,16 @@ body {
 .clear:active {
   background-color: rgba(0, 0, 0, 0.185);
   transition: 30ms all ease-in-out;
+}
+
+.icon {
+    cursor: pointer;
+    padding: 1rem;
+}
+
+.moveIcon {
+    cursor:grab;
+    padding: 1rem;
 }
 
 .listElement {
