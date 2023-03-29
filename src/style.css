@@ -79,7 +79,7 @@ body {
 }
 
 .checkBox {
-    cursor: pointer;
+  cursor: pointer;
 }
 
 .checked {
@@ -107,13 +107,13 @@ body {
 }
 
 .icon {
-    cursor: pointer;
-    padding: 1rem;
+  cursor: pointer;
+  padding: 1rem;
 }
 
 .moveIcon {
-    cursor:grab;
-    padding: 1rem;
+  cursor: grab;
+  padding: 1rem;
 }
 
 .listElement {
