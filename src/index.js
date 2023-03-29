@@ -23,7 +23,7 @@ const mylist = [
   },
 ];
 
-const getMyList = () => {
+const showList = () => {
   const listGroup = document.querySelector('.toDoList');
   mylist.forEach((item) => {
     const listTask = document.createElement('li');
@@ -49,4 +49,4 @@ const getMyList = () => {
   });
 };
 
-window.addEventListener('load', getMyList);
+window.addEventListener('load', showList);
