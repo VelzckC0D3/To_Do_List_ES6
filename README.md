@@ -71,7 +71,7 @@ Introducing my first Javascript app where you are able to manage the books using
 
 ## 🚀 Live Demo <a name="live-demo"></a>
 
-- _You can visit the live demo [here](https://velzck-todo.netlify.app/)_
+- _You can visit the live demo [here](https://velzck-list.netlify.app/)_
  
 https://user-images.githubusercontent.com/92229666/228775166-97286cc1-ce15-4834-88b0-d465b3cf7cac.mp4
 
