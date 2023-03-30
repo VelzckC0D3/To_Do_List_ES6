@@ -30,22 +30,31 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
-  padding-right: 0.8rem;
+  padding-right: 0.2rem;
 }
 
 #addIcon {
   color: rgba(0, 0, 0, 0.3);
-  transform: translateX(10px);
   transition: 300ms all ease-in-out;
 }
 
+.addIconEnter {
+  transform: scale(1.4) rotate(180deg) !important;
+  color: rgb(7, 205, 7) !important;
+}
+
+.addIconError {
+  /*   transform: scale(0.7) !important; */
+  color: rgb(255, 0, 0) !important;
+}
+
 #addIcon:hover {
-  transform: translateX(10px) scale(1.4);
+  transform: scale(1.4);
   color: rgb(7, 205, 7);
 }
 
 #addIcon:active {
-  transform: translateX(10px) scale(1);
+  transform: scale(1);
   transition: 50ms all ease-in-out;
   color: rgb(0, 160, 0);
 }
@@ -89,6 +98,14 @@ body {
   padding: 0 1rem;
 }
 
+.listItemJs {
+  background-color: red;
+}
+
+.listItem:hover {
+  background-color: rgba(255, 232, 128, 0.25);
+}
+
 .toDoTask {
   width: 100%;
   outline: none;
@@ -96,6 +113,7 @@ body {
   font-size: 1rem;
   background-color: transparent;
   transition: 300ms all ease-in-out;
+  cursor: pointer;
 }
 
 .checkBox {
@@ -123,11 +141,11 @@ body {
 }
 
 .clear:hover {
-  background-color: rgba(0, 0, 0, 0.4);
+  background-color: rgb(168, 160, 255);
 }
 
 .clear:active {
-  background-color: rgba(0, 0, 0, 0.7);
+  background-color: rgb(113, 100, 255);
   transition: 30ms all ease-in-out;
 }
 
@@ -140,16 +158,24 @@ body {
   cursor: pointer;
   padding: 1rem 0.5rem;
   transition: 300ms all ease-in-out;
+  color: rgba(0, 0, 0, 0);
+}
+
+.listItem:hover .removeIcon {
   color: rgba(0, 0, 0, 0.3);
 }
 
-.removeIcon:hover {
+.listItem:hover .removeIcon:hover {
   color: rgb(142, 0, 0);
 }
 
-.removeIcon:active {
+.listItem:hover .removeIcon:active {
   color: red;
   transition: 50ms all ease-in-out;
+}
+
+.showRemove {
+  display: block;
 }
 
 .moveIcon {
