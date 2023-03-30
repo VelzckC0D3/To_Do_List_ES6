@@ -72,8 +72,8 @@ Introducing my first Javascript app where you are able to manage the books using
 ## 🚀 Live Demo <a name="live-demo"></a>
 
 - _You can visit the live demo [here](https://velzck-todo.netlify.app/)_
-
-![image](https://user-images.githubusercontent.com/92229666/228430155-8920b3d7-1df2-43a9-aa8e-b3523c2950c5.png)
+ 
+https://user-images.githubusercontent.com/92229666/228775166-97286cc1-ce15-4834-88b0-d465b3cf7cac.mp4
 
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
@@ -113,7 +113,7 @@ Install this project with:
 To run the project, execute the following command:
 
 ```sh
-Open Live Server
+npm run start
 ```
 
 ### Run tests
@@ -129,16 +129,13 @@ To run tests, run the following command:
 ```
 
 ```sh
-  To check the JavaScript functionality use: 'npx eslint."'
+  To check the JavaScript functionality use: 'npx eslint ."'
 ```
 
 ### Deployment
 
-You can deploy this project using Live Server, following these steps:
+You can deploy this project following these steps:
 
-```sh
-Start 'live server'
-```
 ```sh
 On the console run: 'npm run build'
 ```
