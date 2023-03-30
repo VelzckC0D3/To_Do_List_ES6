@@ -1,5 +1,5 @@
 * {
-  font-family: 'Montserrat', sans-serif;
+  font-family: "Montserrat", sans-serif;
   box-sizing: border-box;
 }
 
@@ -35,6 +35,19 @@ body {
 
 #addIcon {
   color: rgba(0, 0, 0, 0.3);
+  transform: translateX(10px);
+  transition: 300ms all ease-in-out;
+}
+
+#addIcon:hover {
+  transform: translateX(10px) scale(1.4);
+  color: rgb(7, 205, 7);
+}
+
+#addIcon:active {
+  transform: translateX(10px) scale(1);
+  transition: 50ms all ease-in-out;
+  color: rgb(0, 160, 0);
 }
 
 .addToInput {
@@ -62,6 +75,12 @@ body {
   justify-content: center;
 }
 
+#toDo {
+  width: 100%;
+  display: flex;
+  height: 100%;
+}
+
 .listItem {
   width: 100%;
   display: flex;
@@ -76,6 +95,7 @@ body {
   border: none;
   font-size: 1rem;
   background-color: transparent;
+  transition: 300ms all ease-in-out;
 }
 
 .checkBox {
@@ -87,7 +107,7 @@ body {
 }
 
 .taskChecked {
-  color: rgba(0, 0, 0, 0.5);
+  color: rgba(0, 0, 0, 0.25);
   text-decoration: line-through;
 }
 
@@ -99,10 +119,15 @@ body {
   transition: 200ms all ease-in-out;
   font-size: 1rem;
   -webkit-text-stroke: 0.3px;
+  background-color: rgba(0, 0, 0, 0.3);
+}
+
+.clear:hover {
+  background-color: rgba(0, 0, 0, 0.4);
 }
 
 .clear:active {
-  background-color: rgba(0, 0, 0, 0.185);
+  background-color: rgba(0, 0, 0, 0.7);
   transition: 30ms all ease-in-out;
 }
 
@@ -111,9 +136,35 @@ body {
   padding: 1rem;
 }
 
+.removeIcon {
+  cursor: pointer;
+  padding: 1rem 0.5rem;
+  transition: 300ms all ease-in-out;
+  color: rgba(0, 0, 0, 0.3);
+}
+
+.removeIcon:hover {
+  color: rgb(142, 0, 0);
+}
+
+.removeIcon:active {
+  color: red;
+  transition: 50ms all ease-in-out;
+}
+
 .moveIcon {
   cursor: grab;
-  padding: 1rem;
+  padding: 1rem 0.5rem;
+  transition: 300ms all ease-in-out;
+  color: rgba(0, 0, 0, 0.3);
+}
+
+.moveIcon:hover {
+  color: rgb(0, 110, 255);
+}
+
+.moveIcon:active {
+  transform: scale(1.3);
 }
 
 .listElement {
