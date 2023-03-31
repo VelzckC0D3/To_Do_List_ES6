@@ -102,11 +102,9 @@ class List {
       const editInput = event.target.closest('.toDoTask');
       if (editInput && event.key === 'Enter') {
         const listItem = editInput.closest('.listItem');
-        const indexToEdit = parseInt(listItem.id, 10);
+        const indexToEdit = this.list.findIndex((task) => task.index === parseInt(listItem.id, 10));
         const updatedDescription = editInput.value;
-        const updatedTask = this.list.find(
-          (task) => task.index === indexToEdit,
-        );
+        const updatedTask = this.list[indexToEdit];
         updatedTask.description = updatedDescription;
         localStorage.setItem('list', JSON.stringify(this.list));
         this.showList();
@@ -116,16 +114,54 @@ class List {
       const editInput = event.target.closest('.toDoTask');
       if (editInput && document.activeElement !== editInput) {
         const listItem = editInput.closest('.listItem');
-        const indexToEdit = parseInt(listItem.id, 10);
+        const indexToEdit = this.list.findIndex((task) => task.index === parseInt(listItem.id, 10));
         const updatedDescription = editInput.value;
-        const updatedTask = this.list.find(
-          (task) => task.index === indexToEdit,
-        );
+        const updatedTask = this.list[indexToEdit];
         updatedTask.description = updatedDescription;
         localStorage.setItem('list', JSON.stringify(this.list));
         this.showList();
       }
     });
+  }
+
+  // Checkbox completed
+  checkBoxChanger(listTask, task) {
+    // Checkbox function to change the status of "completed"
+    const checkbox = listTask.querySelector('.checkBox');
+    const actualTask = listTask.querySelector('.toDoTask');
+    if (checkbox.checked) {
+      listTask.classList.add('checked');
+      actualTask.classList.add('taskChecked');
+    }
+    checkbox.addEventListener('click', () => {
+      task.completed = checkbox.checked;
+      if (checkbox.checked) {
+        listTask.classList.add('checked');
+        actualTask.classList.add('taskChecked');
+        /* console.log(task); */
+      } else {
+        listTask.classList.remove('checked');
+        actualTask.classList.remove('taskChecked');
+        /* console.log(task); */
+      }
+      localStorage.setItem('list', JSON.stringify(this.list));
+    });
+  }
+
+  // Clear all checked task
+  clearCompleted() {
+    const originalLength = this.list.length;
+    this.list = this.list.filter((task) => !task.completed);
+    if (this.list.length < originalLength) {
+      this.showList();
+      for (let i = 0; i < this.list.length; i += 1) {
+        this.list[i].index = i + 1;
+      }
+      localStorage.setItem('list', JSON.stringify(this.list));
+      if (this.list.length === 0) {
+        localStorage.removeItem('list');
+      }
+    }
   }
 
   // Save the task on the local storage
@@ -162,36 +198,22 @@ class List {
     listGroup.innerHTML = '';
     this.list.forEach((task) => {
       const listTask = document.createElement('li');
-      listTask.classList = 'listItem listElement';
+      listTask.classList = 'listItem listElement dragListLi';
       listTask.id = `${task.index}`;
+      listTask.setAttribute('draggable', true);
       listTask.innerHTML = `
-        <input type="checkbox" class="checkBox" ${
-  task.completed ? 'checked' : ''
-}>
+        <input type="checkbox" class="checkBox" ${task.completed ? 'checked' : ''}>
         <input type="text" class="toDoTask" value="${task.description}">
         <i class="fa-regular fa-trash-can removeIcon"></i>
-        <i class="fa-solid fa-ellipsis-vertical moveIcon"></i>
+        <i class="fa-solid fa-ellipsis-vertical moveIcon draggable"></i>
       `;
 
-      // Checkbox function to change the status of "completed"
-      const checkbox = listTask.querySelector('.checkBox');
-      const actualTask = listTask.querySelector('.toDoTask');
-      if (checkbox.checked) {
-        listTask.classList.add('checked');
-        actualTask.classList.add('taskChecked');
-      }
-      checkbox.addEventListener('click', () => {
-        task.completed = checkbox.checked;
-        if (checkbox.checked) {
-          listTask.classList.add('checked');
-          actualTask.classList.add('taskChecked');
-          /* console.log(task); */
-        } else {
-          listTask.classList.remove('checked');
-          actualTask.classList.remove('taskChecked');
-          /* console.log(task); */
-        }
-        localStorage.setItem('list', JSON.stringify(this.list));
+      this.checkBoxChanger(listTask, task);
+
+      //  Clear Button
+      const clearButton = document.querySelector('.clear');
+      clearButton.addEventListener('click', () => {
+        this.clearCompleted();
       });
 
       listGroup.appendChild(listTask);
