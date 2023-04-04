@@ -200,7 +200,6 @@ class List {
       const listTask = document.createElement('li');
       listTask.classList = 'listItem listElement dragListLi';
       listTask.id = `${task.index}`;
-      listTask.setAttribute('draggable', true);
       listTask.innerHTML = `
         <input type="checkbox" class="checkBox" ${task.completed ? 'checked' : ''}>
         <input type="text" class="toDoTask" value="${task.description}">
