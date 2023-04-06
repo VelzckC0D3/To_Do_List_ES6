@@ -65,7 +65,6 @@ class List {
     });
   }
 
-  // Remove a Task after clicking the remove icon
   removeTask() {
     const listGroup = document.querySelector('.toDoList');
     listGroup.addEventListener('click', (event) => {
@@ -73,10 +72,7 @@ class List {
       if (removeIcon) {
         const listItem = removeIcon.closest('.listItem');
         const indexToRemove = parseInt(listItem.id, 10);
-        const filteredList = this.list.filter(
-          (task) => task.index !== indexToRemove,
-        );
-        this.list = filteredList;
+        this.removeItem(indexToRemove);
 
         // Check if list is empty and delete it
         if (this.list.length === 0) {
@@ -93,6 +89,13 @@ class List {
         this.showList();
       }
     });
+  }
+
+  removeItem(removed) {
+    const filteredList = this.list.filter(
+      (task) => task.index !== removed,
+    );
+    this.list = filteredList;
   }
 
   // Edit Task
@@ -162,6 +165,7 @@ class List {
         localStorage.removeItem('list');
       }
     }
+    this.showList();
   }
 
   // Save the task on the local storage
