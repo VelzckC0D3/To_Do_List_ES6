@@ -1,8 +1,9 @@
-import List from "./modules/list";
-import "jest-localstorage-mock";
-import { JSDOM } from "jsdom";
+/* eslint-disable no-console */
+import { JSDOM } from 'jsdom';
+import 'jest-localstorage-mock';
+import List from './modules/list.js';
 
-describe("add", () => {
+describe('add', () => {
   let document;
 
   // Here, we staclished the document enviroment (DOM) that we're going to use, using JSDOM
@@ -37,32 +38,31 @@ describe("add", () => {
   });
 
   // Test that when we click add button, a new index with the stalbished parametters is created
-  test("addButton method", () => {
+  test('addButton method', () => {
     const list = new List();
-    const addButton = global.document.querySelector("#addIcon"); // Here, the error was that this was not on global as is established from  line 31 to line 33
-    const inputField = global.document.querySelector(".addToInput"); // Same
-    console.log(inputField.value); // Console.log actually visible on the commandline 
-    inputField.value = "testing button 1"; // Test input 1 
-    console.log(inputField.value); // Console.log actually visible on the commandline  
+    const addButton = global.document.querySelector('#addIcon'); // Here, the error was that this was not on global as is established from  line 31 to line 33
+    const inputField = global.document.querySelector('.addToInput'); // Same
+    console.log(inputField.value); // Console.log actually visible on the commandline
+    inputField.value = 'testing button 1'; // Test input 1
+    console.log(inputField.value); // Console.log actually visible on the commandline
     addButton.click();
-    inputField.value = "testing button 2"; // test input 2
+    inputField.value = 'testing button 2'; // test input 2
     addButton.click();
-    list.loadTask()
+    list.loadTask();
     console.log(list.list); // show actual list array
-  
+
     expect(list.list[0].description).toBe('testing button 1');
     expect(list.list[0].index).toBe(1);
     expect(list.list[1].description).toBe('testing button 2');
     expect(list.list[1].index).toBe(2);
   });
-  
 
   // Check that the saveTask method works properly iwth the localstorage
-  test("saveTask method", () => {
+  test('saveTask method', () => {
     const list = new List();
-    list.saveTask("test", false, 111);
+    list.saveTask('test', false, 111);
     expect(list.list.length).toBe(1);
-    expect(list.list[0].description).toBe("test");
+    expect(list.list[0].description).toBe('test');
     expect(list.list[0].completed).toBe(false);
     expect(list.list[0].index).toBe(111);
   });

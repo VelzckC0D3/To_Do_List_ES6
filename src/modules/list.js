@@ -218,10 +218,6 @@ class List {
       listGroup.appendChild(listTask);
     });
   }
-
-  sum(a, b) {
-    return a + b;
-  }
 }
 
 export default List;
