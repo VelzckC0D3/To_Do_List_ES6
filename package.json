@@ -648,6 +648,7 @@
     "xml-name-validator": "^4.0.0",
     "xmlchars": "^2.2.0",
     "xregexp": "^2.0.0",
+    "y": "^0.3.2",
     "yallist": "^4.0.0",
     "yaml": "^1.10.2",
     "yargs-parser": "^20.2.9",

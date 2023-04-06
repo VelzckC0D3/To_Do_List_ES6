@@ -160,7 +160,7 @@ class List {
     const originalLength = this.list.length;
     this.list = this.list.filter((task) => !task.completed);
     if (this.list.length < originalLength) {
-      this.showList();
+      // Update task indices
       for (let i = 0; i < this.list.length; i += 1) {
         this.list[i].index = i + 1;
       }
@@ -168,8 +168,9 @@ class List {
       if (this.list.length === 0) {
         localStorage.removeItem('list');
       }
+      // Call showList to update the UI
+      this.showList();
     }
-    this.showList();
   }
 
   // Save the task on the local storage
@@ -209,9 +210,7 @@ class List {
       listTask.classList = 'listItem listElement dragListLi';
       listTask.id = `${task.index}`;
       listTask.innerHTML = `
-        <input type="checkbox" class="checkBox" ${
-  task.completed ? 'checked' : ''
-}>
+        <input type="checkbox" class="checkBox" ${task.completed ? 'checked' : ''}>
         <input type="text" class="toDoTask" value="${task.description}">
         <i class="fa-regular fa-trash-can removeIcon"></i>
         <i class="fa-solid fa-ellipsis-vertical moveIcon draggable"></i>

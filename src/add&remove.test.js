@@ -40,9 +40,7 @@ describe('add', () => {
   // Check that the saveTask method works properly iwth the localstorage
   test('saveTask method', () => {
     const list = new List();
-    console.log('This console log', list.list);
     list.saveTask('test', false, 111);
-    console.log('This console log', list.list);
     expect(list.list.length).toBeGreaterThan(0);
     expect(list.list[0].description).toBe('test');
     expect(list.list[0].completed).toBe(false);
@@ -55,11 +53,6 @@ describe('add', () => {
     list.saveTask('li added to ul', false, 1);
     list.showList(); // update the LI elements inside .toDoList UL
     const ul = global.document.querySelector('.toDoList');
-    console.log(
-      '.toDoList <ul> contains ',
-      ul.querySelectorAll('li').length,
-      ' <li> elements',
-    );
     expect(ul.querySelectorAll('li').length).toBe(1);
   });
 });
@@ -72,9 +65,7 @@ describe('deleteTask', () => {
   test('removeTask method', () => {
     const list = new List();
     list.list = [{ description: 'deleted', completed: false, index: 1 }];
-    console.log('This array, will be deleted', list.list);
     list.removeItem(1);
-    console.log('Succesfully deleted', list.list);
     expect(list.list.length).toBe(0);
   });
 
