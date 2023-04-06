@@ -14,6 +14,8 @@ test('sum calculator', () => {
     expect(result).toBe(6);
   }); */
 
+
+describe('add function', () => {
   test('add new task', () => {
     const list = new List();
     list.saveTask('test', false, 999);
@@ -22,4 +24,12 @@ test('sum calculator', () => {
     expect(list.list[0].completed).toBe(false);
     expect(list.list[0].index).toBe(999);
   });
-  
+  test('add new task', () => {
+    const list = new List();
+    list.saveTask('item', false, 1);
+    expect(list.list.length).toBe(1);
+    expect(list.list[0].description).toBe('item');
+    expect(list.list[0].completed).toBe(false);
+    expect(list.list[0].index).toBe(1);
+  });
+});
