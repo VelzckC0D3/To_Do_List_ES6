@@ -91,9 +91,9 @@ class List {
     });
   }
 
-  removeItem(removed) {
+  removeItem(indexToRemove) {
     const filteredList = this.list.filter(
-      (task) => task.index !== removed,
+      (task) => task.index !== indexToRemove,
     );
     this.list = filteredList;
   }
@@ -105,7 +105,9 @@ class List {
       const editInput = event.target.closest('.toDoTask');
       if (editInput && event.key === 'Enter') {
         const listItem = editInput.closest('.listItem');
-        const indexToEdit = this.list.findIndex((task) => task.index === parseInt(listItem.id, 10));
+        const indexToEdit = this.list.findIndex(
+          (task) => task.index === parseInt(listItem.id, 10),
+        );
         const updatedDescription = editInput.value;
         const updatedTask = this.list[indexToEdit];
         updatedTask.description = updatedDescription;
@@ -117,7 +119,9 @@ class List {
       const editInput = event.target.closest('.toDoTask');
       if (editInput && document.activeElement !== editInput) {
         const listItem = editInput.closest('.listItem');
-        const indexToEdit = this.list.findIndex((task) => task.index === parseInt(listItem.id, 10));
+        const indexToEdit = this.list.findIndex(
+          (task) => task.index === parseInt(listItem.id, 10),
+        );
         const updatedDescription = editInput.value;
         const updatedTask = this.list[indexToEdit];
         updatedTask.description = updatedDescription;
@@ -205,7 +209,9 @@ class List {
       listTask.classList = 'listItem listElement dragListLi';
       listTask.id = `${task.index}`;
       listTask.innerHTML = `
-        <input type="checkbox" class="checkBox" ${task.completed ? 'checked' : ''}>
+        <input type="checkbox" class="checkBox" ${
+  task.completed ? 'checked' : ''
+}>
         <input type="text" class="toDoTask" value="${task.description}">
         <i class="fa-regular fa-trash-can removeIcon"></i>
         <i class="fa-solid fa-ellipsis-vertical moveIcon draggable"></i>

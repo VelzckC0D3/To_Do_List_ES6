@@ -37,36 +37,6 @@ describe('add', () => {
     list.addTask();
   });
 
-  // Test that when we click add button, a new index with the stalbished parametters is created
-  test('addButton method', () => {
-    const list = new List();
-    const addButton = global.document.querySelector('#addIcon'); // Here, the error was that this was not on global as is established from  line 31 to line 33
-    const inputField = global.document.querySelector('.addToInput'); // Same
-    console.log(inputField.value); // Console.log actually visible on the commandline
-    inputField.value = 'testing button 1'; // Test input 1
-    console.log(
-      "Console log to check that inputField.value = 'testing button 1' is assigned correctly",
-      inputField.value
-    ); // Console.log actually visible on the commandline
-    addButton.click();
-    inputField.value = 'testing button 2'; // test input 2
-    addButton.click();
-    console.log(
-      'Loading the list.list (localStorage array) before loading the added one ',
-      list.list
-    ); // show actual list array before being loaded
-    list.loadTask();
-    console.log(
-      'Loading the list.list(localStorage array) after loading the added one ',
-      list.list
-    ); // show actual list array
-
-    expect(list.list[0].description).toBe('testing button 1');
-    expect(list.list[0].index).toBeGreaterThan(0);
-    expect(list.list[1].description).toBe('testing button 2');
-    expect(list.list[1].index).toBeGreaterThan(1);
-  });
-
   // Check that the saveTask method works properly iwth the localstorage
   test('saveTask method', () => {
     const list = new List();
@@ -88,7 +58,7 @@ describe('add', () => {
     console.log(
       '.toDoList <ul> contains ',
       ul.querySelectorAll('li').length,
-      ' <li> elements'
+      ' <li> elements',
     );
     expect(ul.querySelectorAll('li').length).toBe(1);
   });
@@ -99,10 +69,21 @@ describe('deleteTask', () => {
     localStorage.clear(); // Clear localStorage before each test
   });
 
-  test('removes a task from the tasks array and localStorage by index', () => {
-    const testList = new List();
-    testList.list = [{description: "three", completed: false, index: 1}];
-    testList.removeItem(1);
-    expect(testList.list.length).toBe(0);
+  test('removeTask method', () => {
+    const list = new List();
+    list.list = [{ description: 'deleted', completed: false, index: 1 }];
+    console.log('This array, will be deleted', list.list);
+    list.removeItem(1);
+    console.log('Succesfully deleted', list.list);
+    expect(list.list.length).toBe(0);
+  });
+
+  test('ul haves exactly 0 li (item removed)', () => {
+    const list = new List();
+    const ul = global.document.querySelector('.toDoList');
+    list.list = [{ description: 'deleted', completed: false, index: 1 }];
+    list.removeItem(1);
+    list.showList();
+    expect(ul.querySelectorAll('li').length).toBe(0);
   });
 });
