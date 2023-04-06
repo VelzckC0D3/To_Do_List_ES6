@@ -93,3 +93,16 @@ describe('add', () => {
     expect(ul.querySelectorAll('li').length).toBe(1);
   });
 });
+
+describe('deleteTask', () => {
+  beforeEach(() => {
+    localStorage.clear(); // Clear localStorage before each test
+  });
+
+  test('removes a task from the tasks array and localStorage by index', () => {
+    const testList = new List();
+    testList.list = [{description: "three", completed: false, index: 1}];
+    testList.removeItem(1);
+    expect(testList.list.length).toBe(0);
+  });
+});
