@@ -17,6 +17,7 @@
   - [Run tests](#run-tests)
   - [Deployment](#deployment)
 - [👥 Author](#author)
+- [👥 Collaborator](#collaborator)
 - [🔭 Features](#future-features)
 - [🤝 Contributing](#contributing)
 - [⭐️ Show your support](#support)
@@ -121,15 +122,11 @@ npm run start
 To run tests, run the following command:
 
 ```sh
-  To check the HTML functionality use: 'HTML npx hint .'
+  First install all the required dependencies with the command 'npm install -y'
 ```
 
 ```sh
-  To check the CSS functionality use: 'npx stylelint "**/*.{css,scss}"'
-```
-
-```sh
-  To check the JavaScript functionality use: 'npx eslint ."'
+  To run the add and remove unit test with Jest, execute the command: 'npm test'
 ```
 
 ### Deployment
@@ -154,6 +151,13 @@ The website will be deployed
 
 - GitHub: [@VelzckC0D3](https://github.com/VelzckC0D3)
 - LinkedIn: [VelzckC0D3](https://www.linkedin.com/in/velzckcode/)
+
+<!-- COLLABORATOR -->
+
+## 👥 Collaborator <a name="collaborator"></a>
+
+- GitHub: [@smunoz1998](https://github.com/smunoz1998)
+- LinkedIn: [SantiagoMunoz](https://www.linkedin.com/in/santiago-munoz-0b2b1a260/)
 
 <!-- FUTURE FEATURES -->
 

@@ -7,4 +7,3 @@ list.addTask();
 list.removeTask();
 list.editTask();
 list.showList();
-list.draggables();

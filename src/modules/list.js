@@ -65,7 +65,6 @@ class List {
     });
   }
 
-  // Remove a Task after clicking the remove icon
   removeTask() {
     const listGroup = document.querySelector('.toDoList');
     listGroup.addEventListener('click', (event) => {
@@ -73,10 +72,7 @@ class List {
       if (removeIcon) {
         const listItem = removeIcon.closest('.listItem');
         const indexToRemove = parseInt(listItem.id, 10);
-        const filteredList = this.list.filter(
-          (task) => task.index !== indexToRemove,
-        );
-        this.list = filteredList;
+        this.removeItem(indexToRemove);
 
         // Check if list is empty and delete it
         if (this.list.length === 0) {
@@ -95,6 +91,13 @@ class List {
     });
   }
 
+  removeItem(indexToRemove) {
+    const filteredList = this.list.filter(
+      (task) => task.index !== indexToRemove,
+    );
+    this.list = filteredList;
+  }
+
   // Edit Task
   editTask() {
     const listGroup = document.querySelector('.toDoList');
@@ -102,7 +105,9 @@ class List {
       const editInput = event.target.closest('.toDoTask');
       if (editInput && event.key === 'Enter') {
         const listItem = editInput.closest('.listItem');
-        const indexToEdit = this.list.findIndex((task) => task.index === parseInt(listItem.id, 10));
+        const indexToEdit = this.list.findIndex(
+          (task) => task.index === parseInt(listItem.id, 10),
+        );
         const updatedDescription = editInput.value;
         const updatedTask = this.list[indexToEdit];
         updatedTask.description = updatedDescription;
@@ -114,7 +119,9 @@ class List {
       const editInput = event.target.closest('.toDoTask');
       if (editInput && document.activeElement !== editInput) {
         const listItem = editInput.closest('.listItem');
-        const indexToEdit = this.list.findIndex((task) => task.index === parseInt(listItem.id, 10));
+        const indexToEdit = this.list.findIndex(
+          (task) => task.index === parseInt(listItem.id, 10),
+        );
         const updatedDescription = editInput.value;
         const updatedTask = this.list[indexToEdit];
         updatedTask.description = updatedDescription;
@@ -153,7 +160,7 @@ class List {
     const originalLength = this.list.length;
     this.list = this.list.filter((task) => !task.completed);
     if (this.list.length < originalLength) {
-      this.showList();
+      // Update task indices
       for (let i = 0; i < this.list.length; i += 1) {
         this.list[i].index = i + 1;
       }
@@ -161,6 +168,8 @@ class List {
       if (this.list.length === 0) {
         localStorage.removeItem('list');
       }
+      // Call showList to update the UI
+      this.showList();
     }
   }
 
