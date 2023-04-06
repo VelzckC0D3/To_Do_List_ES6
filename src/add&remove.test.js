@@ -44,12 +44,13 @@ describe('add', () => {
     const inputField = global.document.querySelector('.addToInput'); // Same
     console.log(inputField.value); // Console.log actually visible on the commandline
     inputField.value = 'testing button 1'; // Test input 1
-    console.log(inputField.value); // Console.log actually visible on the commandline
+    console.log('Console log to check that inputField.value = \'testing button 1\' is assigned correctly', inputField.value); // Console.log actually visible on the commandline
     addButton.click();
     inputField.value = 'testing button 2'; // test input 2
     addButton.click();
+    console.log('Loading the list.list (localStorage array) before loading the added one ', list.list); // show actual list array before being loaded
     list.loadTask();
-    console.log(list.list); // show actual list array
+    console.log('Loading the list.list(localStorage array) after loading the added one ', list.list); // show actual list array
 
     expect(list.list[0].description).toBe('testing button 1');
     expect(list.list[0].index).toBe(1);
