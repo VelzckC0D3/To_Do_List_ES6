@@ -7,4 +7,10 @@ list.addTask();
 list.removeTask();
 list.editTask();
 list.showList();
-list.draggables();
+
+const buttonClear = document.querySelector('.clear');
+
+buttonClear.addEventListener('click', () => {
+  const listLength = list.length;
+  console.log(listLength, 'test', list.sum(3, 3));
+});
