@@ -104,31 +104,28 @@ class List {
     listGroup.addEventListener('keydown', (event) => {
       const editInput = event.target.closest('.toDoTask');
       if (editInput && event.key === 'Enter') {
-        const listItem = editInput.closest('.listItem');
-        const indexToEdit = this.list.findIndex(
-          (task) => task.index === parseInt(listItem.id, 10),
-        );
-        const updatedDescription = editInput.value;
-        const updatedTask = this.list[indexToEdit];
-        updatedTask.description = updatedDescription;
-        localStorage.setItem('list', JSON.stringify(this.list));
-        this.showList();
+        this.updateTaskDescription(editInput);
       }
     });
     listGroup.addEventListener('focusout', (event) => {
       const editInput = event.target.closest('.toDoTask');
       if (editInput && document.activeElement !== editInput) {
-        const listItem = editInput.closest('.listItem');
-        const indexToEdit = this.list.findIndex(
-          (task) => task.index === parseInt(listItem.id, 10),
-        );
-        const updatedDescription = editInput.value;
-        const updatedTask = this.list[indexToEdit];
-        updatedTask.description = updatedDescription;
-        localStorage.setItem('list', JSON.stringify(this.list));
-        this.showList();
+        this.updateTaskDescription(editInput);
       }
     });
+  }
+
+  // Update edited Task
+  updateTaskDescription(editInput) {
+    const listItem = editInput.closest('.listItem');
+    const indexToEdit = this.list.findIndex(
+      (task) => task.index === parseInt(listItem.id, 10),
+    );
+    const updatedDescription = editInput.value;
+    const updatedTask = this.list[indexToEdit];
+    updatedTask.description = updatedDescription;
+    localStorage.setItem('list', JSON.stringify(this.list)); // update local storage
+    this.showList();
   }
 
   // Checkbox completed

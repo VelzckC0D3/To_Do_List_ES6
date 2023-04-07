@@ -6,40 +6,44 @@ import List from './modules/list.js';
 describe('list', () => {
   // Stablished an empty document so we can use DOM when filled on line #33
   let document;
-  // Staclished the document enviroment (DOM) that we're going to use, using JSDOM
-
-  // clear the jest-localstorage-mock each time it finish a test..
-  beforeEach(() => {
-    localStorage.clear(); // Clear localStorage before each test
+  // Stablished the document enviroment (DOM) that we're going to use, using JSDOM
+  beforeAll(() => {
     const dom = new JSDOM(`<!DOCTYPE html>
-    <html lang="en">
-  
-    <body>
-  
-        <section class="listCont">
-            <form id="addToList">
-                <p id="listTitle" class="listElement">Today's To Do</p>
-                <div class="listElement addCont">
-                    <div id="toDo">
-                        <input class="addToInput" type="text" placeholder="Add to your list..."/></input>
-                        <i id="addIcon" class="fa-solid fa-plus icon"></i>    
+        <html lang="en">
+      
+        <body>
+      
+            <section class="listCont">
+                <form id="addToList">
+                    <p id="listTitle" class="listElement">Today's To Do</p>
+                    <div class="listElement addCont">
+                        <div id="toDo">
+                            <input class="addToInput" type="text" placeholder="Add to your list..."/></input>
+                            <i id="addIcon" class="fa-solid fa-plus icon"></i>    
+                        </div>
                     </div>
-                </div>
-            </form>
-            <ul class="toDoList"></ul>
-            <button type="button" class="clear"><span>Clear all completed</span></button>
-        </section>
-    </body>
-  
-    </html>`);
+                </form>
+                <ul class="toDoList"></ul>
+                <button type="button" class="clear"><span>Clear all completed</span></button>
+            </section>
+        </body>
+      
+        </html>`);
     global.window = dom.window;
     document = dom.window.document;
     global.document = document;
+    global.KeyboardEvent = dom.window.KeyboardEvent;
 
     const list = new List();
     list.addTask();
   });
 
+  // clear the jest-localstorage-mock each time it finish a test...
+  beforeEach(() => {
+    localStorage.clear(); // Clear localStorage before each test
+  });
+
+  // test the add method for the List class
   describe('add', () => {
     // Check that the saveTask method works properly iwth the localstorage
     test('saveTask method', () => {
@@ -61,6 +65,7 @@ describe('list', () => {
     });
   });
 
+  // test the delete method for the List class
   describe('deleteTask', () => {
     test('removeTask method', () => {
       const list = new List();
@@ -76,6 +81,35 @@ describe('list', () => {
       list.removeItem(1);
       list.showList();
       expect(ul.querySelectorAll('li').length).toBe(0);
+    });
+  });
+
+  // test edit task function
+  describe('editTask', () => {
+    test('edit a task', () => {
+      const list = new List();
+      list.saveTask('before edit 1', false, 1);
+      list.showList();
+      console.log('---------------', list.list);
+
+      // Get the input element for the task to be edited
+      const input = global.document.querySelector('.toDoTask');
+
+      // Update the input value
+      input.value = 'after edit 1';
+
+      // Get the list item containing the task to be edited
+      const listItem = input.closest('.listItem');
+
+      // Get the index of the task to be edited
+      const indexToEdit = list.list.findIndex(
+        (task) => task.index === parseInt(listItem.id, 10),
+      );
+
+      // Edit the task using the updateTaskDescription method
+      list.updateTaskDescription(input);
+
+      expect(list.list[indexToEdit].description).toBe('after edit 1');
     });
   });
 });
