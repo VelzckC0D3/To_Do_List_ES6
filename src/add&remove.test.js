@@ -90,7 +90,6 @@ describe('list', () => {
       const list = new List();
       list.saveTask('before edit 1', false, 1);
       list.showList();
-      console.log('---------------', list.list);
 
       // Get the input element for the task to be edited
       const input = global.document.querySelector('.toDoTask');
@@ -110,6 +109,24 @@ describe('list', () => {
       list.updateTaskDescription(input);
 
       expect(list.list[indexToEdit].description).toBe('after edit 1');
+    });
+  });
+
+  describe('Clear All completed', () => {
+    test('Remove all completed (true) tasks', () => {
+      const list = new List();
+      list.list = [{ description: 'deleted', completed: false, index: 1 }, { description: 'deleted', completed: true, index: 1 }, { description: 'deleted', completed: true, index: 1 }];
+      list.clearCompleted();
+      expect(list.list.length).toBe(1);
+    });
+
+    test('ul haves exactly 2 li after all completed (true) items removed)', () => {
+      const list = new List();
+      const ulItem = global.document.querySelector('.toDoList');
+      list.list = [{ description: 'deleted', completed: false, index: 1 }, { description: 'deleted', completed: true, index: 1 }, { description: 'deleted', completed: true, index: 1 }, { description: 'deleted', completed: false, index: 1 }];
+      list.clearCompleted();
+      list.showList();
+      expect(ulItem.querySelectorAll('li').length).toBe(2);
     });
   });
 });
