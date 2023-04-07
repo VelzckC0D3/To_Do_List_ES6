@@ -33,6 +33,7 @@ describe('list', () => {
     document = dom.window.document;
     global.document = document;
     global.KeyboardEvent = dom.window.KeyboardEvent;
+    global.MouseEvent = dom.window.MouseEvent;
 
     const list = new List();
     list.addTask();
@@ -112,18 +113,49 @@ describe('list', () => {
     });
   });
 
-  describe('Clear All completed', () => {
-    test('Remove all completed (true) tasks', () => {
+  describe('checkBoxChanger', () => {
+    // Checks that the checkbox interacts with the DOM
+    test('checkBox method', () => {
       const list = new List();
-      list.list = [{ description: 'deleted', completed: false, index: 1 }, { description: 'deleted', completed: true, index: 1 }, { description: 'deleted', completed: true, index: 1 }];
+      list.saveTask('before edit 1', true, 1);
+      list.showList();
+      const checkBox = global.document.querySelector('.checkBox');
+      expect(checkBox.checked).toBe(true);
+    });
+
+    // Check the complete status
+    test('complete status (true)', () => {
+      const list = new List();
+      list.saveTask('before edit 1', false, 1);
+      list.showList();
+      const checkBox = global.document.querySelector('.checkBox');
+      checkBox.dispatchEvent(new MouseEvent('click'));
+      // To be noticed: this exxpects the actual change from the local storage, not just the DOM
+      expect(list.list[0].completed).toBe(true);
+    });
+  });
+
+  describe('clearAllCompleted', () => {
+    test('clearAllCompleted method', () => {
+      const list = new List();
+      list.list = [
+        { description: 'deleted', completed: false, index: 1 },
+        { description: 'deleted', completed: true, index: 1 },
+        { description: 'deleted', completed: true, index: 1 },
+      ];
       list.clearCompleted();
       expect(list.list.length).toBe(1);
     });
 
-    test('ul haves exactly 2 li after all completed (true) items removed)', () => {
+    test('2 items after clear all (items removed)', () => {
       const list = new List();
       const ulItem = global.document.querySelector('.toDoList');
-      list.list = [{ description: 'deleted', completed: false, index: 1 }, { description: 'deleted', completed: true, index: 1 }, { description: 'deleted', completed: true, index: 1 }, { description: 'deleted', completed: false, index: 1 }];
+      list.list = [
+        { description: 'deleted', completed: false, index: 1 },
+        { description: 'deleted', completed: true, index: 1 },
+        { description: 'deleted', completed: true, index: 1 },
+        { description: 'deleted', completed: false, index: 1 },
+      ];
       list.clearCompleted();
       list.showList();
       expect(ulItem.querySelectorAll('li').length).toBe(2);
